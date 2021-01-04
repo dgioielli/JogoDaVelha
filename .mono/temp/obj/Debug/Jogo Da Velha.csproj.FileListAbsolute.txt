@@ -1,0 +1,8 @@
+C:\Users\dougl\Desktop\Godot_v3.2.3-stable_mono_win64\JogoDaVelha\.mono\temp\obj\Debug\Jogo Da Velha.csprojAssemblyReference.cache
+C:\Users\dougl\Desktop\Godot_v3.2.3-stable_mono_win64\JogoDaVelha\.mono\temp\obj\Debug\Jogo Da Velha.csproj.CoreCompileInputs.cache
+C:\Users\dougl\Desktop\Godot_v3.2.3-stable_mono_win64\JogoDaVelha\.mono\temp\obj\Debug\Jogo Da Velha.AssemblyInfoInputs.cache
+C:\Users\dougl\Desktop\Godot_v3.2.3-stable_mono_win64\JogoDaVelha\.mono\temp\obj\Debug\Jogo Da Velha.AssemblyInfo.cs
+C:\Users\dougl\Desktop\Godot_v3.2.3-stable_mono_win64\JogoDaVelha\.mono\temp\bin\Debug\Jogo Da Velha.dll
+C:\Users\dougl\Desktop\Godot_v3.2.3-stable_mono_win64\JogoDaVelha\.mono\temp\bin\Debug\Jogo Da Velha.pdb
+C:\Users\dougl\Desktop\Godot_v3.2.3-stable_mono_win64\JogoDaVelha\.mono\temp\obj\Debug\Jogo Da Velha.dll
+C:\Users\dougl\Desktop\Godot_v3.2.3-stable_mono_win64\JogoDaVelha\.mono\temp\obj\Debug\Jogo Da Velha.pdb
