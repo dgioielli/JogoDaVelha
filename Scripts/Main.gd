@@ -1,9 +1,5 @@
 extends Control
 
-# Variáveis constantes
-const ValX = 1
-const ValO = 10
-
 # Instâncias dos elementos da cena
 onready var Tabuleiro = [
 	[$Tiles/TileButton1, $Tiles/TileButton2, $Tiles/TileButton3],
@@ -12,15 +8,23 @@ onready var Tabuleiro = [
 ]
 
 onready var WinDialog = $WinDialog
+onready var CTEs = $"/root/Ctes"
+
+# Sinais que podem ser emitidos
+signal player_Changed(val)
 
 # Variáveis de Base
-var ActivePlayer = ValX
+var ActivePlayer = 0
+var InactivePlayer = 0
 var CurrentRound = 0
 var Winner = false
+var Multiplayer = false
 
 func _ready():
 	_loadTabuleiro()
 	_loadDialogBox()
+	ActivePlayer = CTEs.ValX
+	InactivePlayer = CTEs.ValO
 
 func _loadTabuleiro():
 	for row in Tabuleiro:
@@ -36,26 +40,30 @@ func _loadDialogBox():
 func clearTabuleiro():
 	CurrentRound = 0
 	Winner = false
-	ActivePlayer = ValX
+	ActivePlayer = CTEs.ValX
 	for row in Tabuleiro:
 		for btn in row:
 			btn.reset()
+	emit_signal("player_Changed", ActivePlayer)
 
 func placeMark(row, col, player):
-	if player == ValX:
-		Tabuleiro[row][col].setX()
-		ActivePlayer = ValO
+	if player == CTEs.ValX:
+		Tabuleiro[row][col].setX(CTEs.ValX)
+		ActivePlayer = CTEs.ValO
+		InactivePlayer = CTEs.ValX
 	else:
-		Tabuleiro[row][col].setO()
-		ActivePlayer = ValX
+		Tabuleiro[row][col].setO(CTEs.ValO)
+		ActivePlayer = CTEs.ValX
+		InactivePlayer = CTEs.ValO
 	
 	CurrentRound += 1
 	checkWin()
+	emit_signal("player_Changed", ActivePlayer)
 	
 	if (CurrentRound == 9):
 		showWinDialog("Draw!", "The game was a draw!")
-	elif (ActivePlayer == ValO and not Winner):
-		$Tween.interpolate_callback(self, 0.5 + randf(), "aiPicPoint")
+	elif (ActivePlayer == CTEs.ValO and not Winner and not Multiplayer):
+		$Tween.interpolate_callback($Players/AiPlayer, 0.5 + randf(), "aiPicPoint")
 		$Tween.start()
 
 func sumRow(rowNum):
@@ -116,78 +124,9 @@ func checkWin():
 		return
 
 func onTileButtonPressed(button):
-	if (ActivePlayer == ValX):
+	if (ActivePlayer == Ctes.ValX or Multiplayer):
 		if (Tabuleiro[button.Row][button.Col].Valor == 0):
 			placeMark(button.Row, button.Col, ActivePlayer)
-
-func aiFillRow(row):
-	for col in range(3):
-		if (Tabuleiro[row][col].Valor == 0):
-			placeMark(row, col, ActivePlayer)
-
-func aiFillCol(col):
-	for row in range(3):
-		if (Tabuleiro[row][col].Valor == 0):
-			placeMark(row, col, ActivePlayer)
-
-func aiFillDiag1():
-	for idx in range(3):
-		if (Tabuleiro[idx][idx].Valor == 0):
-			placeMark(idx, idx, ActivePlayer)
-
-func aiFillDiag2():
-	for idx in range(3):
-		if (Tabuleiro[idx][2 - idx].Valor == 0):
-			placeMark(idx, 2 - idx, ActivePlayer)
-
-func aiPicWinningFill():
-	for idx in range(3):
-		if (sumRow(idx) == 20):
-			aiFillRow(idx)
-			return true
-		if (sumCol(idx) == 20):
-			aiFillCol(idx)
-			return true
-	if (sumDiag1() == 20):
-		aiFillDiag1()
-		return true
-	if (sumDiag2() == 20):
-		aiFillDiag2()
-		return true
-	return false
-
-func aiBlock():
-	for idx in range(3):
-		if (sumRow(idx) == 2):
-			aiFillRow(idx)
-			return true
-		if (sumCol(idx) == 2):
-			aiFillCol(idx)
-			return true
-	if (sumDiag1() == 2):
-		aiFillDiag1()
-		return true
-	if (sumDiag2() == 2):
-		aiFillDiag2()
-		return true
-	return false
-
-func aiPicPoint():
-	if (aiPicWinningFill()):
-		return
-	if (aiBlock()):
-		return
-	var row = randi() % 3
-	var col = randi() % 3
-	var valido = false
-	
-	while (not valido):
-		if (Tabuleiro[row][col].Valor == 0):
-			valido = true
-		else:
-			row = randi() % 3
-			col = randi() % 3
-	placeMark(row, col, ActivePlayer)
 
 func onPlayAgain():
 	clearTabuleiro()

@@ -20,10 +20,18 @@ run/main_scene="res://Main.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
+[autoload]
+
+Ctes="*res://Scripts/CTEs.gd"
+
 [display]
 
-window/size/width=550
-window/size/height=550
+window/size/width=700
+window/size/height=650
+
+[editor_plugins]
+
+enabled=PoolStringArray( "bitmap_font_importer" )
 
 [global]
 

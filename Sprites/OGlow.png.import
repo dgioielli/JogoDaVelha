@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hover.png-ad81ed31f67d786569743b758e558b17.stex"
+path="res://.import/OGlow.png-88ce95047048044ae6ebe1de203bbcae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hover.png"
-dest_files=[ "res://.import/Hover.png-ad81ed31f67d786569743b758e558b17.stex" ]
+source_file="res://Sprites/OGlow.png"
+dest_files=[ "res://.import/OGlow.png-88ce95047048044ae6ebe1de203bbcae.stex" ]
 
 [params]
 

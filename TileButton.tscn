@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://TileButton.gd" type="Script" id=1]
-[ext_resource path="res://Hover.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/TileButton.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Hover.png" type="Texture" id=2]
 
 [node name="TileButton" type="TextureButton"]
 margin_left = -64.0

@@ -1,9 +1,9 @@
 extends TextureButton
 
 # Constantes e Preloads
-const oTex = preload("res://OGlow.png")
-const xTex = preload("res://XGlow.png")
-const hoverTex = preload("res://Hover.png")
+const oTex = preload("res://Sprites/OGlow.png")
+const xTex = preload("res://Sprites/XGlow.png")
+const hoverTex = preload("res://Sprites/Hover.png")
 
 # Variáveis de Base
 var Valor = 0
@@ -19,10 +19,10 @@ func _ready():
 func reset():
 	_set_valores(0, null, hoverTex)
 	
-func setX(val = 1):
+func setX(val):
 	_set_valores(val, xTex, xTex)
 	
-func setO(val = 10):
+func setO(val):
 	_set_valores(val, oTex, oTex)	
 
 func _set_valores(valor, normal, hover):

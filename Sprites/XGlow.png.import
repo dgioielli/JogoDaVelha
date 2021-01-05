@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/OGlow.png-616b7ee24e20613df930636901d10f04.stex"
+path="res://.import/XGlow.png-5b6106ee630758af4493dbff1e12c325.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://OGlow.png"
-dest_files=[ "res://.import/OGlow.png-616b7ee24e20613df930636901d10f04.stex" ]
+source_file="res://Sprites/XGlow.png"
+dest_files=[ "res://.import/XGlow.png-5b6106ee630758af4493dbff1e12c325.stex" ]
 
 [params]
 
