@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://TileButton.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Main.cs" type="Script" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=2]
 
 [node name="Main" type="Control"]
 margin_top = -1.1225
@@ -52,11 +52,13 @@ __meta__ = {
 
 [node name="Tiles" type="Node2D" parent="."]
 
-[node name="TileButton" parent="Tiles" instance=ExtResource( 1 )]
+[node name="TileButton1" parent="Tiles" instance=ExtResource( 1 )]
 margin_left = 58.5
 margin_top = 58.5
 margin_right = 186.5
 margin_bottom = 186.5
+Row = 0
+Col = 0
 
 [node name="TileButton2" parent="Tiles" instance=ExtResource( 1 )]
 anchor_right = 50.0
@@ -64,6 +66,8 @@ margin_left = 211.0
 margin_top = 58.5
 margin_right = 339.0
 margin_bottom = 186.5
+Row = 0
+Col = 1
 
 [node name="TileButton3" parent="Tiles" instance=ExtResource( 1 )]
 anchor_right = 50.0
@@ -71,6 +75,8 @@ margin_left = 363.5
 margin_top = 58.5
 margin_right = 491.5
 margin_bottom = 186.5
+Row = 0
+Col = 2
 
 [node name="TileButton4" parent="Tiles" instance=ExtResource( 1 )]
 anchor_right = 50.0
@@ -78,6 +84,8 @@ margin_left = 58.5
 margin_top = 211.0
 margin_right = 186.5
 margin_bottom = 339.0
+Row = 1
+Col = 0
 
 [node name="TileButton5" parent="Tiles" instance=ExtResource( 1 )]
 anchor_right = 50.0
@@ -85,6 +93,8 @@ margin_left = 211.0
 margin_top = 211.0
 margin_right = 339.0
 margin_bottom = 339.0
+Row = 1
+Col = 1
 
 [node name="TileButton6" parent="Tiles" instance=ExtResource( 1 )]
 anchor_right = 50.0
@@ -92,6 +102,8 @@ margin_left = 363.5
 margin_top = 211.0
 margin_right = 491.5
 margin_bottom = 339.0
+Row = 1
+Col = 2
 
 [node name="TileButton7" parent="Tiles" instance=ExtResource( 1 )]
 anchor_right = 50.0
@@ -99,6 +111,8 @@ margin_left = 58.5
 margin_top = 363.5
 margin_right = 186.5
 margin_bottom = 491.5
+Row = 2
+Col = 0
 
 [node name="TileButton8" parent="Tiles" instance=ExtResource( 1 )]
 anchor_right = 50.0
@@ -106,6 +120,8 @@ margin_left = 211.0
 margin_top = 363.5
 margin_right = 339.0
 margin_bottom = 491.5
+Row = 2
+Col = 1
 
 [node name="TileButton9" parent="Tiles" instance=ExtResource( 1 )]
 anchor_right = 50.0
@@ -113,3 +129,17 @@ margin_left = 363.5
 margin_top = 363.5
 margin_right = 491.5
 margin_bottom = 491.5
+Row = 2
+Col = 2
+
+[node name="WinDialog" type="ConfirmationDialog" parent="."]
+margin_left = 150.0
+margin_top = 225.0
+margin_right = 400.0
+margin_bottom = 325.0
+popup_exclusive = true
+window_title = "Someone Won!!!"
+dialog_text = "Someone Won!!!"
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="confirmed" from="WinDialog" to="." method="onPlayAgain"]

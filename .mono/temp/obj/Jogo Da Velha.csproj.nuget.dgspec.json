@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dougl\\Desktop\\Godot_v3.2.3-stable_mono_win64\\JogoDaVelha\\Jogo Da Velha.csproj": {}
+    "C:\\Users\\dougl\\Documents\\GitHub\\JogoDaVelha\\JogoDaVelha\\Jogo Da Velha.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dougl\\Desktop\\Godot_v3.2.3-stable_mono_win64\\JogoDaVelha\\Jogo Da Velha.csproj": {
+    "C:\\Users\\dougl\\Documents\\GitHub\\JogoDaVelha\\JogoDaVelha\\Jogo Da Velha.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dougl\\Desktop\\Godot_v3.2.3-stable_mono_win64\\JogoDaVelha\\Jogo Da Velha.csproj",
+        "projectUniqueName": "C:\\Users\\dougl\\Documents\\GitHub\\JogoDaVelha\\JogoDaVelha\\Jogo Da Velha.csproj",
         "projectName": "Jogo Da Velha",
-        "projectPath": "C:\\Users\\dougl\\Desktop\\Godot_v3.2.3-stable_mono_win64\\JogoDaVelha\\Jogo Da Velha.csproj",
+        "projectPath": "C:\\Users\\dougl\\Documents\\GitHub\\JogoDaVelha\\JogoDaVelha\\Jogo Da Velha.csproj",
         "packagesPath": "C:\\Users\\dougl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dougl\\Desktop\\Godot_v3.2.3-stable_mono_win64\\JogoDaVelha\\.mono\\temp\\obj\\",
+        "outputPath": "C:\\Users\\dougl\\Documents\\GitHub\\JogoDaVelha\\JogoDaVelha\\.mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
