@@ -5,6 +5,9 @@ const oTex = preload("res://Sprites/OGlow.png")
 const xTex = preload("res://Sprites/XGlow.png")
 const hoverTex = preload("res://Sprites/Hover.png")
 
+
+onready var CtrlGame = $"/root/CtrlGame"
+
 # Variáveis de Base
 var Valor = 0
 export(int) var Row = -1
@@ -31,4 +34,6 @@ func _set_valores(valor, normal, hover):
 	texture_hover = hover
 
 func _on_TileButton_pressed():
-	emit_signal("custom_pressed", self)
+	if (not CtrlGame.Pause):
+		emit_signal("custom_pressed", self)
+

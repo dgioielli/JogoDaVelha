@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://TileButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/AiPlayer.gd" type="Script" id=3]
 [ext_resource path="res://Sprites/XGlow.png" type="Texture" id=4]
 [ext_resource path="res://Fonts/ARBERKLEY.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Sprites/OGlow.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -35,8 +36,66 @@ func _on_player_changed(val):
 		self.texture = null
 "
 
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 5 )
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Label
+
+# Variáveis que guardam as sprites que podem ser utilizadas
+const oTex = preload(\"res://Sprites/OGlow.png\")
+const xTex = preload(\"res://Sprites/XGlow.png\")
+
+
+onready var Ctrl = $\"/root/CtrlGame\"
+
+
+func _ready():
+	Ctrl.connect(\"change_placar\", self, \"_on_placar_changed\")
+
+func _on_placar_changed():
+	text = str(Ctrl.VitoriasX)
+"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Label
+
+# Variáveis que guardam as sprites que podem ser utilizadas
+const oTex = preload(\"res://Sprites/OGlow.png\")
+const xTex = preload(\"res://Sprites/XGlow.png\")
+
+
+onready var Ctrl = $\"/root/CtrlGame\"
+
+
+func _ready():
+	Ctrl.connect(\"change_placar\", self, \"_on_placar_changed\")
+
+func _on_placar_changed():
+	text = str(Ctrl.VitoriasO)
+"
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends Label
+
+# Variáveis que guardam as sprites que podem ser utilizadas
+const oTex = preload(\"res://Sprites/OGlow.png\")
+const xTex = preload(\"res://Sprites/XGlow.png\")
+
+
+onready var Ctrl = $\"/root/CtrlGame\"
+
+
+func _ready():
+	Ctrl.connect(\"change_placar\", self, \"_on_placar_changed\")
+
+func _on_placar_changed():
+	text = str(Ctrl.Empates)
+"
+
 [node name="Main" type="Control"]
-margin_right = 700.0
+margin_right = 550.0
 margin_bottom = 650.0
 script = ExtResource( 2 )
 __meta__ = {
@@ -194,6 +253,74 @@ texture = ExtResource( 4 )
 script = SubResource( 2 )
 
 [node name="Placar" type="Node2D" parent="CanvasLayer"]
+
+[node name="PlacarX" type="Sprite" parent="CanvasLayer/Placar"]
+position = Vector2( 50, 50 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 4 )
+
+[node name="VitoriasX" type="Label" parent="CanvasLayer/Placar"]
+margin_left = 100.0
+margin_top = 30.0
+margin_right = 180.0
+margin_bottom = 70.0
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+valign = 1
+script = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlacarO" type="Sprite" parent="CanvasLayer/Placar"]
+position = Vector2( 225, 50 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 6 )
+
+[node name="VitoriasO" type="Label" parent="CanvasLayer/Placar"]
+margin_left = 275.0
+margin_top = 30.0
+margin_right = 355.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( -525.801, 410.458 )
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+valign = 1
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlacarEmpates" type="Label" parent="CanvasLayer/Placar"]
+margin_left = 375.0
+margin_top = 30.0
+margin_right = 478.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( -525.801, 410.458 )
+custom_fonts/font = SubResource( 3 )
+text = "Empates:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Empates" type="Label" parent="CanvasLayer/Placar"]
+margin_left = 475.0
+margin_top = 30.0
+margin_right = 535.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( -525.801, 410.458 )
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+valign = 1
+script = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="WinDialog" type="ConfirmationDialog" parent="."]
 margin_left = 150.0

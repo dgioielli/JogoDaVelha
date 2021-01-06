@@ -9,6 +9,7 @@ onready var Tabuleiro = [
 
 onready var WinDialog = $WinDialog
 onready var CTEs = $"/root/Ctes"
+onready var CtrlGame = $"/root/CtrlGame"
 
 # Sinais que podem ser emitidos
 signal player_Changed(val)
@@ -19,12 +20,17 @@ var InactivePlayer = 0
 var CurrentRound = 0
 var Winner = false
 var Multiplayer = false
+var Pause = false
 
 func _ready():
 	_loadTabuleiro()
 	_loadDialogBox()
 	ActivePlayer = CTEs.ValX
 	InactivePlayer = CTEs.ValO
+
+func _input(event):
+	if (event.is_action_pressed("Pause")):
+		CtrlGame.Pause = not Pause
 
 func _loadTabuleiro():
 	for row in Tabuleiro:
@@ -62,6 +68,7 @@ func placeMark(row, col, player):
 	
 	if (CurrentRound == 9):
 		showWinDialog("Draw!", "The game was a draw!")
+		CtrlGame.Empates += 1
 	elif (ActivePlayer == CTEs.ValO and not Winner and not Multiplayer):
 		$Tween.interpolate_callback($Players/AiPlayer, 0.5 + randf(), "aiPicPoint")
 		$Tween.start()
@@ -101,26 +108,32 @@ func checkWin():
 		var sum = sumRow(idx)
 		if (sum == 3):
 			showWinDialog("Player X Wins!", "Player X Wins in Row %d" % [idx + 1])
+			CtrlGame.VitoriasX += 1
 			return
 		elif (sum == 30):
 			showWinDialog("Player O Wins!", "Player O Wins in Row %d" % [idx + 1])
+			CtrlGame.VitoriasO += 1
 			return
 		
 		sum = sumCol(idx)
 		if (sum == 3):
 			showWinDialog("Player X Wins!", "Player X Wins in Column %d" % [idx + 1])
+			CtrlGame.VitoriasX += 1
 			return
 		elif (sum == 30):
 			showWinDialog("Player O Wins!", "Player O Wins in Column %d" % [idx + 1])
+			CtrlGame.VitoriasO += 1
 			return
 	
 	var d1 = sumDiag1()
 	var d2 = sumDiag2()
 	if (d1 == 3 or d2 == 3):
 		showWinDialog("Player X Wins!", "Player X Wins in Diagonal")
+		CtrlGame.VitoriasX += 1
 		return
 	elif (d1 == 30 or d2 == 30):
 		showWinDialog("Player O Wins!", "Player O Wins in Diagonal")
+		CtrlGame.VitoriasO += 1
 		return
 
 func onTileButtonPressed(button):
