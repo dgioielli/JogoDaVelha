@@ -146,3 +146,15 @@ func onPlayAgain():
 
 func onQuit():
 	get_tree().quit()
+
+func _on_BtnMenu_pressed():
+	CtrlGame.Pause = true
+	$CamadaOpcoes/Menu.visible = true
+
+func _on_BtnResume_pressed():
+	CtrlGame.Pause = false
+	$CamadaOpcoes/Menu.visible = false
+
+func _on_ChkMultiplayer_toggled(button_pressed):
+	Multiplayer = button_pressed
+	clearTabuleiro()

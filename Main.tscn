@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://TileButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Sprites/XGlow.png" type="Texture" id=4]
 [ext_resource path="res://Fonts/ARBERKLEY.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Sprites/OGlow.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/BtnMenu.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -93,6 +94,24 @@ func _ready():
 func _on_placar_changed():
 	text = str(Ctrl.Empates)
 "
+
+[sub_resource type="Theme" id=7]
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.0784314, 0.0784314, 0.0784314, 0.937255 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.901961, 0.901961, 0.901961, 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 26
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 24
+font_data = ExtResource( 5 )
 
 [node name="Main" type="Control"]
 margin_right = 550.0
@@ -229,13 +248,13 @@ Col = 2
 [node name="AiPlayer" type="Node2D" parent="Players"]
 script = ExtResource( 3 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CamadaJogo" type="CanvasLayer" parent="."]
 layer = 10
 
-[node name="Indicador" type="Node2D" parent="CanvasLayer"]
+[node name="Indicador" type="Node2D" parent="CamadaJogo"]
 position = Vector2( 0, 600 )
 
-[node name="PlayerLabel" type="Label" parent="CanvasLayer/Indicador"]
+[node name="PlayerLabel" type="Label" parent="CamadaJogo/Indicador"]
 modulate = Color( 0.996078, 0.996078, 0.996078, 1 )
 margin_left = 150.0
 margin_right = 280.0
@@ -246,20 +265,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/Indicador"]
+[node name="Sprite" type="Sprite" parent="CamadaJogo/Indicador"]
 position = Vector2( 320, 20 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
 script = SubResource( 2 )
 
-[node name="Placar" type="Node2D" parent="CanvasLayer"]
+[node name="Placar" type="Node2D" parent="CamadaJogo"]
 
-[node name="PlacarX" type="Sprite" parent="CanvasLayer/Placar"]
+[node name="PlacarX" type="Sprite" parent="CamadaJogo/Placar"]
 position = Vector2( 50, 50 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
 
-[node name="VitoriasX" type="Label" parent="CanvasLayer/Placar"]
+[node name="VitoriasX" type="Label" parent="CamadaJogo/Placar"]
 margin_left = 100.0
 margin_top = 30.0
 margin_right = 180.0
@@ -273,12 +292,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlacarO" type="Sprite" parent="CanvasLayer/Placar"]
+[node name="PlacarO" type="Sprite" parent="CamadaJogo/Placar"]
 position = Vector2( 225, 50 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 6 )
 
-[node name="VitoriasO" type="Label" parent="CanvasLayer/Placar"]
+[node name="VitoriasO" type="Label" parent="CamadaJogo/Placar"]
 margin_left = 275.0
 margin_top = 30.0
 margin_right = 355.0
@@ -293,7 +312,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlacarEmpates" type="Label" parent="CanvasLayer/Placar"]
+[node name="PlacarEmpates" type="Label" parent="CamadaJogo/Placar"]
 margin_left = 375.0
 margin_top = 30.0
 margin_right = 478.0
@@ -307,7 +326,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Empates" type="Label" parent="CanvasLayer/Placar"]
+[node name="Empates" type="Label" parent="CamadaJogo/Placar"]
 margin_left = 475.0
 margin_top = 30.0
 margin_right = 535.0
@@ -322,6 +341,94 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BtnMenu" type="Button" parent="CamadaJogo"]
+margin_left = 475.0
+margin_top = 575.0
+margin_right = 615.0
+margin_bottom = 709.0
+rect_scale = Vector2( 0.5, 0.5 )
+icon = ExtResource( 7 )
+
+[node name="CamadaOpcoes" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="Menu" type="Panel" parent="CamadaOpcoes"]
+visible = false
+margin_left = 50.0
+margin_top = 48.5017
+margin_right = 500.0
+margin_bottom = 598.502
+theme = SubResource( 7 )
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TituloMenu" type="Label" parent="CamadaOpcoes/Menu"]
+anchor_right = 1.0
+margin_top = 45.9255
+margin_bottom = 85.9255
+rect_pivot_offset = Vector2( -525.801, 410.458 )
+custom_fonts/font = SubResource( 3 )
+text = "Opções"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnResume" type="Button" parent="CamadaOpcoes/Menu"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = -70.0
+margin_right = -250.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CamadaOpcoes/Menu/BtnResume"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 9 )
+text = "Voltar ao Jogo"
+align = 1
+valign = 1
+
+[node name="BtnQuit" type="Button" parent="CamadaOpcoes/Menu"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 250.0
+margin_top = -70.0
+margin_right = -20.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CamadaOpcoes/Menu/BtnQuit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 9 )
+text = "Sair"
+align = 1
+valign = 1
+
+[node name="ChkMultiplayer" type="CheckButton" parent="CamadaOpcoes/Menu"]
+anchor_right = 1.0
+margin_left = 40.0
+margin_top = 100.0
+margin_right = -40.0
+margin_bottom = 140.0
+custom_fonts/font = SubResource( 10 )
+text = "Multiplayer"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="WinDialog" type="ConfirmationDialog" parent="."]
 margin_left = 150.0
 margin_top = 225.0
@@ -332,4 +439,8 @@ window_title = "Someone Won!!!"
 dialog_text = "Someone Won!!!"
 
 [node name="Tween" type="Tween" parent="."]
+[connection signal="pressed" from="CamadaJogo/BtnMenu" to="." method="_on_BtnMenu_pressed"]
+[connection signal="pressed" from="CamadaOpcoes/Menu/BtnResume" to="." method="_on_BtnResume_pressed"]
+[connection signal="pressed" from="CamadaOpcoes/Menu/BtnQuit" to="." method="onQuit"]
+[connection signal="toggled" from="CamadaOpcoes/Menu/ChkMultiplayer" to="." method="_on_ChkMultiplayer_toggled"]
 [connection signal="confirmed" from="WinDialog" to="." method="onPlayAgain"]
